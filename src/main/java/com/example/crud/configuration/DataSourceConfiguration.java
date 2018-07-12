@@ -16,14 +16,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 public class DataSourceConfiguration {
-
-
 	
 	@Primary
 	@Bean(name = "entityManagerFactory")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder,
 			@Qualifier("dataSource") DataSource dataSource) {
-		return builder.dataSource(dataSource).packages("com.example.crud.entities").persistenceUnit("Student").build();
+		return builder.dataSource(dataSource).packages("com.example.crud.entities").build();
 	}
 
 	@Primary
