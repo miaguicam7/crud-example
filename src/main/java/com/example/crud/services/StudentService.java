@@ -1,8 +1,8 @@
 package com.example.crud.services;
 
-import org.springframework.stereotype.Service;
+import com.example.crud.entities.Student;
 
-@Service
 public interface StudentService {
 
+	public Student persistStudent(Student student);
 }

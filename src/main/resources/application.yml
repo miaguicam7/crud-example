@@ -1,13 +1,12 @@
+server:
+  port: 8081
+  servlet:
+    path: /crud-example
+
 spring:
   profiles:
     active:
     - develop
-   
-# H2 
-  h2:
-    console:
-      enabled: true
-      path: /h2
 
 # Datasource
   datasource:
@@ -16,9 +15,8 @@ spring:
     password: 
     driver-class-name: org.h2.Driver
     
-    
-server:
-  port: 8081
-  
-
-
+# H2 
+  h2:
+    console:
+      enabled: true
+      path: /h2    

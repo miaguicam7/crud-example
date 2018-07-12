@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    initialize: true
+  jpa:
+    generate-ddl: true
+    
