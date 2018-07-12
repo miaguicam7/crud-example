@@ -12,5 +12,7 @@ public interface StudentService {
 
 	public void deleteStudent(Integer id);
 
+	public Student putStudent(Student student);
+
 	public Student modifyStudent(Student student);
 }

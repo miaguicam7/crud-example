@@ -8,7 +8,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.crud.DAO.StudentDAO;
-import com.example.crud.entities.Student;
 
 @ActiveProfiles(profiles = "develop")
 @RunWith(SpringRunner.class)

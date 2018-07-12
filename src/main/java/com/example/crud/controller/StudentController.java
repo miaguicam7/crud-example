@@ -37,6 +37,12 @@ public class StudentController {
 		}
 	}
 
+	@RequestMapping(value = "/students", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateStudent(@RequestBody Student student) {
+		studentService.putStudent(student);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
 	@RequestMapping(value = "/students/{student_id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteStudent(@PathVariable("student_id") Integer studentId) {
 		studentService.deleteStudent(studentId);

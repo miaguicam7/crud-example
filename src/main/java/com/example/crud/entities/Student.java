@@ -14,6 +14,7 @@ import lombok.experimental.Accessors;
 @Entity
 @Table(name = "student")
 @Accessors(chain = true, fluent = true)
+//TODO: revisar porque no hace bien el binding con lombok
 //@Data
 //@ToString
 public class Student implements Serializable {
