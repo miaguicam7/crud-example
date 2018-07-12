@@ -1,5 +1,6 @@
 package com.example.crud.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,9 @@ public class StudentServiceImpl implements StudentService {
 	StudentDAO studentDAO;
 
 	@Override
-	public Student persistStudent(Student student) {
-		return studentDAO.save(student);
+	public Optional<Student> persistStudent(Student student) {
+
+		return Optional.of(studentDAO.save(student));
 	}
 
 	@Override
@@ -30,12 +32,17 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public Student modifyStudent(Student student) {
-		return studentDAO.save(student);
+	public Optional<Student> modifyStudent(Student student) {
+		return Optional.of(studentDAO.save(student));
 	}
 
 	@Override
-	public Student putStudent(Student student) {
-		return studentDAO.save(student);
+	public Optional<Student> putStudent(Student student) {
+		return Optional.of(studentDAO.save(student));
+	}
+
+	@Override
+	public Optional<List<Student>> obtainStudentList() {
+		return Optional.of(studentDAO.findAll());
 	}
 }

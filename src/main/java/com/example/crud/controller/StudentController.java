@@ -1,5 +1,6 @@
 package com.example.crud.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,18 @@ public class StudentController {
 	public ResponseEntity<?> persistStudent(@RequestBody Student student) {
 		studentService.persistStudent(student);
 		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+
+	@RequestMapping(value = "/students", method = RequestMethod.GET)
+	public ResponseEntity<?> obtainStudentList() {
+
+		Optional<List<Student>> studentList = studentService.obtainStudentList();
+
+		if (!studentList.get().isEmpty()) {
+			return new ResponseEntity<>(studentList.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
 	}
 
 	@RequestMapping(value = "/students/{student_id}", method = RequestMethod.GET)
