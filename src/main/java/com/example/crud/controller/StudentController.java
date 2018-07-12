@@ -1,5 +1,7 @@
 package com.example.crud.controller;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +19,26 @@ public class StudentController {
 	@Autowired
 	StudentService studentService;
 
-	@RequestMapping(value = "/student", method = RequestMethod.POST)
+	@RequestMapping(value = "/students", method = RequestMethod.POST)
 	public ResponseEntity<?> persistStudent(@RequestBody Student student) {
-		
 		studentService.persistStudent(student);
-		
 		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+
+	@RequestMapping(value = "/students/{student_id}", method = RequestMethod.GET)
+	public ResponseEntity<?> obtainStudent(@PathParam("student_id") Integer studentId) {
+		return new ResponseEntity<>(studentService.obtainStudent(studentId), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/students/{student_id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteStudent(@PathParam("student_id") Integer studentId) {
+		studentService.deleteStudent(studentId);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/students", method = RequestMethod.PATCH)
+	public ResponseEntity<?> modifyStudent(@RequestBody Student student) {
+		studentService.modifyStudent(student);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
