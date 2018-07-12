@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active:
+    - develop
+    
+    
+server:
+  port: 8081
