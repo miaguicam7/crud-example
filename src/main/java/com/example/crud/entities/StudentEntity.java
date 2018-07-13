@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
 //TODO: revisar porque no hace bien el binding con lombok
 //@Data
 //@ToString
-public class Student implements Serializable {
+public class StudentEntity implements Serializable {
 	private static final long serialVersionUID = -7826014622957055945L;
 
 	@Id

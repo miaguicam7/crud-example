@@ -7,22 +7,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.crud.DAO.StudentDAO;
-import com.example.crud.entities.Student;
+import com.example.crud.entities.StudentEntity;
+import com.example.crud.mapper.StudentMapper;
+import com.example.crud.model.StudentModel;
 
 @Service
 public class StudentServiceImpl implements StudentService {
 
 	@Autowired
-	StudentDAO studentDAO;
+	private StudentDAO studentDAO;
+
+	//@Autowired
+	private StudentMapper studentMapper;
 
 	@Override
-	public Optional<Student> persistStudent(Student student) {
-
-		return Optional.of(studentDAO.save(student));
+	public Optional<StudentEntity> persistStudent(StudentModel student) {
+		return Optional.of(studentDAO.save(studentMapper.composeStudentEntity(student)));
 	}
 
 	@Override
-	public Optional<Student> obtainStudent(Integer id) {
+	public Optional<StudentEntity> obtainStudent(Integer id) {
 		return studentDAO.findById(id);
 	}
 
@@ -32,17 +36,17 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public Optional<Student> modifyStudent(Student student) {
+	public Optional<StudentEntity> modifyStudent(StudentEntity student) {
 		return Optional.of(studentDAO.save(student));
 	}
 
 	@Override
-	public Optional<Student> putStudent(Student student) {
+	public Optional<StudentEntity> putStudent(StudentEntity student) {
 		return Optional.of(studentDAO.save(student));
 	}
 
 	@Override
-	public Optional<List<Student>> obtainStudentList() {
+	public Optional<List<StudentEntity>> obtainStudentList() {
 		return Optional.of(studentDAO.findAll());
 	}
 }

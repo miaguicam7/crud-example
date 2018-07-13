@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.crud.entities.Student;
+import com.example.crud.entities.StudentEntity;
+import com.example.crud.model.StudentModel;
 import com.example.crud.services.StudentService;
 
 @RestController
@@ -21,8 +22,13 @@ public class StudentController {
 	@Autowired
 	StudentService studentService;
 
+	/**
+	 * MapStruct Mapper example usage
+	 * @param student
+	 * @return
+	 */
 	@RequestMapping(value = "/students", method = RequestMethod.POST)
-	public ResponseEntity<?> persistStudent(@RequestBody Student student) {
+	public ResponseEntity<?> persistStudent(@RequestBody StudentModel student) {
 		studentService.persistStudent(student);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
@@ -30,7 +36,7 @@ public class StudentController {
 	@RequestMapping(value = "/students", method = RequestMethod.GET)
 	public ResponseEntity<?> obtainStudentList() {
 
-		Optional<List<Student>> studentList = studentService.obtainStudentList();
+		Optional<List<StudentEntity>> studentList = studentService.obtainStudentList();
 
 		if (!studentList.get().isEmpty()) {
 			return new ResponseEntity<>(studentList.get(), HttpStatus.OK);
@@ -41,7 +47,7 @@ public class StudentController {
 
 	@RequestMapping(value = "/students/{student_id}", method = RequestMethod.GET)
 	public ResponseEntity<?> obtainStudent(@PathVariable("student_id") Integer studentId) {
-		Optional<Student> student = studentService.obtainStudent(studentId);
+		Optional<StudentEntity> student = studentService.obtainStudent(studentId);
 
 		if (student.isPresent()) {
 			return new ResponseEntity<>(student.get(), HttpStatus.OK);
@@ -51,7 +57,7 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/students", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateStudent(@RequestBody Student student) {
+	public ResponseEntity<?> updateStudent(@RequestBody StudentEntity student) {
 		studentService.putStudent(student);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
@@ -63,7 +69,7 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/students", method = RequestMethod.PATCH)
-	public ResponseEntity<?> modifyStudent(@RequestBody Student student) {
+	public ResponseEntity<?> modifyStudent(@RequestBody StudentEntity student) {
 		studentService.modifyStudent(student);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

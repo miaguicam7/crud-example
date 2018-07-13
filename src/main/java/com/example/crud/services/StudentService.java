@@ -3,19 +3,20 @@ package com.example.crud.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.crud.entities.Student;
+import com.example.crud.entities.StudentEntity;
+import com.example.crud.model.StudentModel;
 
 public interface StudentService {
 
-	public Optional<Student> persistStudent(Student student);
+	public Optional<StudentEntity> persistStudent(StudentModel student);
 
-	public Optional<Student> obtainStudent(Integer id);
+	public Optional<StudentEntity> obtainStudent(Integer id);
 	
-	public Optional<List<Student>> obtainStudentList();
+	public Optional<List<StudentEntity>> obtainStudentList();
 
 	public void deleteStudent(Integer id);
 
-	public Optional<Student> putStudent(Student student);
+	public Optional<StudentEntity> putStudent(StudentEntity student);
 
-	public Optional<Student> modifyStudent(Student student);
+	public Optional<StudentEntity> modifyStudent(StudentEntity student);
 }
