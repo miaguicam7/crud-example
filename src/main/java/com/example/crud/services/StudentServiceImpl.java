@@ -17,7 +17,7 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	private StudentDAO studentDAO;
 
-	//@Autowired
+	@Autowired
 	private StudentMapper studentMapper;
 
 	@Override

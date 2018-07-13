@@ -8,14 +8,16 @@ import org.mapstruct.factory.Mappers;
 import com.example.crud.entities.StudentEntity;
 import com.example.crud.model.StudentModel;
 
-//@Mapper
+@Mapper(componentModel = "spring")
 public interface StudentMapper {
-	
+
 	StudentMapper INSTANCE = Mappers.getMapper(StudentMapper.class);
-	 
-	  @Mappings({
-	      @Mapping(target="employeeId", source="entity.id"),
-			@Mapping(target = "employeeName", source="entity.name")
-	    })
-	    StudentEntity composeStudentEntity(StudentModel studentModel);
+
+	@Mappings({ @Mapping(target = "id", source = "studentModel.id"),
+			@Mapping(target = "studentName", source = "studentModel.name"),
+			@Mapping(target = "course", source = "studentModel.course"),
+			@Mapping(target = "rollNumber", source = "studentModel.rollNumber"),
+
+	})
+	StudentEntity composeStudentEntity(StudentModel studentModel);
 }
